@@ -14,7 +14,7 @@ import android.webkit.WebView;
  * Use the {@link BrowserFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BrowserFragment extends Fragment {
+public class BrowserFragment extends android.support.v4.app.Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "position";
     private static final String ARG_PARAM2 = "url";

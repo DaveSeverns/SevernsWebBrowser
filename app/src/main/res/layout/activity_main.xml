@@ -13,7 +13,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/enter_url_hint"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName" >
+
+    </EditText>
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
