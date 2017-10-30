@@ -7,25 +7,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BrowserFragment#newInstance} factory method to
+
  * create an instance of this fragment.
  */
 public class BrowserFragment extends android.support.v4.app.Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "position";
-    private static final String ARG_PARAM2 = "url";
+    
+    private static final String ARG_PARAM1 = "https:/reddit.com";
 
-    private int position;
+    
     private String url;
     Button searchButton;
     View view;
     WebView webView;
+    WebViewClient webViewClient;
 
 
 
@@ -34,30 +36,15 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param position Parameter 1.
-     * @param url Parameter 2.
-     * @return A new instance of fragment BrowserFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BrowserFragment newInstance(int position, String url) {
-        BrowserFragment fragment = new BrowserFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, position);
-        args.putString(ARG_PARAM2, url);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+   
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            position = getArguments().getInt(ARG_PARAM1);
-            url = getArguments().getString(ARG_PARAM2);
+            
+            url = getArguments().getString(ARG_PARAM1);
         }
     }
 
@@ -72,7 +59,9 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                webView.setWebViewClient(new WebViewClient());
                 webView.loadUrl(getStringFromURIText());
+                //webView.loadUrl(getStringFromURIText());
             }
         });
 
@@ -86,7 +75,8 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
      */
     public String getStringFromURIText(){
         EditText searchText = (EditText)view.findViewById(R.id.url_search);
-        return searchText.getText().toString();
+        url = searchText.getText().toString();
+        return url;
 
     }
 
