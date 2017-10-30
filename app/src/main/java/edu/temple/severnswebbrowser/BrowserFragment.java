@@ -59,8 +59,11 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditText searchText = (EditText)view.findViewById(R.id.url_search);
+                url = searchText.getText().toString();
+                //added this so app would load url in my webview and not use default app from phone
                 webView.setWebViewClient(new WebViewClient());
-                webView.loadUrl(getStringFromURIText());
+                webView.loadUrl(url);
                 //webView.loadUrl(getStringFromURIText());
             }
         });
@@ -69,15 +72,6 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
 
     }
 
-    /**
-     * use this method to read the url from the search bar, have it in browser fragment so its specific to each fragment
-     * @return
-     */
-    public String getStringFromURIText(){
-        EditText searchText = (EditText)view.findViewById(R.id.url_search);
-        url = searchText.getText().toString();
-        return url;
 
-    }
 
 }

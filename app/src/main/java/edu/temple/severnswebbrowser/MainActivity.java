@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     //member variable to keep reference through out activity and inner class
     ViewPager viewPager;
     int currentIndex, lastIndex;
+
+    final private String HOME_PAGE = "https://imgur.com/gallery/R390EId";
 
     BrowserAdapter browserAdapter;
     FragmentManager fm;
@@ -36,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
         browserAdapter = new BrowserAdapter(fm);
         viewPager.setAdapter(browserAdapter);
 
+        
 
-        currentIndex=0;
+        currentIndex=1;
         //viewPager.setCurrentItem(currentIndex);
 
     }
