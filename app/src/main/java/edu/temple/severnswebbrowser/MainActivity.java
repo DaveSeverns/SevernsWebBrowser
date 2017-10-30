@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    //member vars
     ViewPager viewPager;
     int currentIndex, lastIndex;
     EditText urlSearchBar;
