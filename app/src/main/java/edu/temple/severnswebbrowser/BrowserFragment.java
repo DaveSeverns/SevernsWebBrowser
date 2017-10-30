@@ -63,6 +63,7 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_browser, container, false);
         WebView webView = view.findViewById(R.id.browser_web_view);
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(url);
         return view;
 
     }
