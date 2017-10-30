@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
     //member vars
     ViewPager viewPager;
     int currentIndex, lastIndex;
-    EditText urlSearchBar;
+
     BrowserAdapter browserAdapter;
     FragmentManager fm;
     BrowserFragment fragment;
-    Button searchButton;
+
     String url;
 
     @Override
@@ -32,10 +32,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fm = getSupportFragmentManager();
-        urlSearchBar = (EditText) findViewById(R.id.url_search);
+
         viewPager = (ViewPager) findViewById(R.id.web_pager);
-        //button to search the url given
-        searchButton = findViewById(R.id.button_search);
+
         browserAdapter = new BrowserAdapter(fm);
         viewPager.setAdapter(browserAdapter);
         browserAdapter.addUrlToList(url);
@@ -44,19 +43,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setCurrentItem(currentIndex);
 
 
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                url = urlSearchBar.getText().toString();
 
-                WebView webView = (WebView)findViewById(R.id.browser_web_view);
-                webView.loadUrl(url);
-
-                browserAdapter.setUrlPositionInList(currentIndex,url);
-                browserAdapter.notifyDataSetChanged();
-
-            }
-        });
 
 
 

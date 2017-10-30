@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 /**
@@ -21,6 +23,9 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
 
     private int position;
     private String url;
+    Button searchButton;
+    View view;
+    WebView webView;
 
 
 
@@ -60,11 +65,28 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_browser, container, false);
-        WebView webView = view.findViewById(R.id.browser_web_view);
+        view = inflater.inflate(R.layout.fragment_browser, container, false);
+        webView = view.findViewById(R.id.browser_web_view);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(url);
+        searchButton = (Button) view.findViewById(R.id.button_search);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webView.loadUrl(getStringFromURIText());
+            }
+        });
+
         return view;
+
+    }
+
+    /**
+     * use this method to read the url from the search bar, have it in browser fragment so its specific to each fragment
+     * @return
+     */
+    public String getStringFromURIText(){
+        EditText searchText = (EditText)view.findViewById(R.id.url_search);
+        return searchText.getText().toString();
 
     }
 
