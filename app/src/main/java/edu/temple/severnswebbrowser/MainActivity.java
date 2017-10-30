@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     int currentIndex, lastIndex;
 
+    //TODO implement home page when the app launches
     final private String HOME_PAGE = "https://imgur.com/gallery/R390EId";
 
     BrowserAdapter browserAdapter;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         browserAdapter = new BrowserAdapter(fm);
         viewPager.setAdapter(browserAdapter);
 
-        
+
 
         currentIndex=1;
         //viewPager.setCurrentItem(currentIndex);
@@ -118,18 +119,7 @@ public class MainActivity extends AppCompatActivity {
             return browserFragmentsList.size();
         }
 
-        /**public String getUrlAtPositionAsString(int posisiton){
-            return urlsList.get(posisiton).toString();
 
-        }
-
-        public void setUrlPositionInList(int positionInList, String url){
-            urlsList.set(positionInList, url);
-        }
-
-        public void addUrlToList(String url){
-            urlsList.add(url);
-        }**/
     }
 
 }
