@@ -72,6 +72,9 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
 
     }
 
-
-
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString("url",url);
+        super.onSaveInstanceState(outState);
+    }
 }
