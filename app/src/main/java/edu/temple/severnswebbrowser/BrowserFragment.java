@@ -56,13 +56,18 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
         webView = view.findViewById(R.id.browser_web_view);
         webView.getSettings().setJavaScriptEnabled(true);
         searchButton = (Button) view.findViewById(R.id.button_search);
+        webView.setWebViewClient(new WebViewClient());
+        if(url != null){
+            webView.loadUrl(url);
+        }
+
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText searchText = (EditText)view.findViewById(R.id.url_search);
                 url = searchText.getText().toString();
                 //added this so app would load url in my webview and not use default app from phone
-                webView.setWebViewClient(new WebViewClient());
+
                 webView.loadUrl(url);
                 //webView.loadUrl(getStringFromURIText());
             }

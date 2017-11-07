@@ -56,6 +56,17 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    public void getNewBrowserFragment(){
+        //adds a browser fragment to the view pager
+        BrowserFragment browserFragment = new BrowserFragment();
+        browserFragmentsList.add(browserFragment);
+        //update the pager adapter to load new fragment
+        browserAdapter.notifyDataSetChanged();
+        //set current position to end of list
+        currentIndex = browserFragmentsList.size() -1;
+        viewPager.setCurrentItem(currentIndex);
+    }
+
     /**
      * defines the behavior of each interaction of the menu buttons
      * @param item
@@ -68,14 +79,7 @@ public class MainActivity extends AppCompatActivity {
         currentIndex = viewPager.getCurrentItem();
         switch (item.getItemId()){
             case R.id.new_tab_button:{
-                //adds a browser fragment to the view pager
-                BrowserFragment browserFragment = new BrowserFragment();
-                browserFragmentsList.add(browserFragment);
-                //update the pager adapter to load new fragment
-                browserAdapter.notifyDataSetChanged();
-                //set current position to end of list
-                currentIndex = browserFragmentsList.size() -1;
-                viewPager.setCurrentItem(currentIndex);
+                getNewBrowserFragment();
                 return true;
             }
             case R.id.previous_tab_button:{
