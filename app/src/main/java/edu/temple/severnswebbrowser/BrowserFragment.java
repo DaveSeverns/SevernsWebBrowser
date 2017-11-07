@@ -20,7 +20,7 @@ import android.widget.EditText;
 public class BrowserFragment extends android.support.v4.app.Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     
-    private static final String ARG_PARAM1 = "https:/reddit.com";
+    private static final String ARG_PARAM1 = "url";
 
     
     private String url;
@@ -37,7 +37,15 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
     }
 
 
-   
+    public static BrowserFragment newInstance(String url){
+        BrowserFragment browserFragment = new BrowserFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1,url);
+        browserFragment.setArguments(args);
+
+
+        return  browserFragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -55,12 +55,21 @@ public class MainActivity extends AppCompatActivity {
         browserAdapter = new BrowserAdapter(fm);
         viewPager.setAdapter(browserAdapter);
 
-        getNewBrowserFragment();
+        //getNewBrowserFragment();
+        if(url != null){
+            BrowserFragment browserFragment = BrowserFragment.newInstance(url);
+            browserFragmentsList.add(browserFragment);
+            //update the pager adapter to load new fragment
+            browserAdapter.notifyDataSetChanged();
+            //set current position to end of list
+            currentIndex = browserFragmentsList.size() -1;
+            viewPager.setCurrentItem(currentIndex);
+        }
         //webView.loadUrl(url);
 
 
 
-        currentIndex=1;
+        //currentIndex=1;
         //viewPager.setCurrentItem(currentIndex);
 
     }
