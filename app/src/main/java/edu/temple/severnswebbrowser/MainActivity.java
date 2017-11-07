@@ -1,5 +1,6 @@
 package edu.temple.severnswebbrowser;
 
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import java.util.ArrayList;
 
@@ -19,11 +21,14 @@ public class MainActivity extends AppCompatActivity {
     int currentIndex, lastIndex;
 
     //TODO implement home page when the app launches
-    final private String HOME_PAGE = "https://imgur.com/gallery/R390EId";
+    final private String HOME_PAGE = "https://google.com";
+
+    Uri dataFromIntent;
 
     BrowserAdapter browserAdapter;
     FragmentManager fm;
     ArrayList<BrowserFragment> browserFragmentsList;
+    WebView webView;
 
     String url;
 
@@ -35,10 +40,23 @@ public class MainActivity extends AppCompatActivity {
 
 
         browserFragmentsList = new ArrayList<>();
+
+        dataFromIntent = getIntent().getData();
+
+        if(dataFromIntent != null){
+            url = dataFromIntent.toString();
+        }
+        else
+            url = HOME_PAGE;
+
         viewPager = (ViewPager) findViewById(R.id.web_pager);
+       
 
         browserAdapter = new BrowserAdapter(fm);
         viewPager.setAdapter(browserAdapter);
+
+        getNewBrowserFragment();
+        //webView.loadUrl(url);
 
 
 
