@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             url = HOME_PAGE;
 
         viewPager = (ViewPager) findViewById(R.id.web_pager);
-       
+
 
         browserAdapter = new BrowserAdapter(fm);
         viewPager.setAdapter(browserAdapter);
