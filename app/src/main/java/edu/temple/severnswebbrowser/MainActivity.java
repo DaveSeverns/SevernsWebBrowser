@@ -1,5 +1,6 @@
 package edu.temple.severnswebbrowser;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -57,13 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         //getNewBrowserFragment();
         if(url != null){
-            BrowserFragment browserFragment = BrowserFragment.newInstance(url);
-            browserFragmentsList.add(browserFragment);
-            //update the pager adapter to load new fragment
-            browserAdapter.notifyDataSetChanged();
-            //set current position to end of list
-            currentIndex = browserFragmentsList.size() -1;
-            viewPager.setCurrentItem(currentIndex);
+            getNewInstanceBrowserFragment(url);
         }
         //webView.loadUrl(url);
 
@@ -75,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        url = intent.getData().toString();
+        getNewInstanceBrowserFragment(url);
+        super.onNewIntent(intent);
+    }
 
     //inflate and draw menu resource
     @Override
@@ -83,7 +84,17 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void getNewBrowserFragment(){
+    public void getNewInstanceBrowserFragment(String url){
+        BrowserFragment browserFragment = BrowserFragment.newInstance(url);
+        browserFragmentsList.add(browserFragment);
+        //update the pager adapter to load new fragment
+        browserAdapter.notifyDataSetChanged();
+        //set current position to end of list
+        currentIndex = browserFragmentsList.size() -1;
+        viewPager.setCurrentItem(currentIndex);
+    }
+
+    public void getBrowserFragment(){
         //adds a browser fragment to the view pager
         BrowserFragment browserFragment = new BrowserFragment();
         browserFragmentsList.add(browserFragment);
@@ -106,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         currentIndex = viewPager.getCurrentItem();
         switch (item.getItemId()){
             case R.id.new_tab_button:{
-                getNewBrowserFragment();
+                getBrowserFragment();
                 return true;
             }
             case R.id.previous_tab_button:{
