@@ -51,7 +51,6 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            
             url = getArguments().getString(ARG_PARAM1);
         }
     }
@@ -61,25 +60,29 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_browser, container, false);
+        EditText searchText = (EditText)view.findViewById(R.id.url_search);
+        searchText.setText(url);
         webView = view.findViewById(R.id.browser_web_view);
         webView.getSettings().setJavaScriptEnabled(true);
         searchButton = (Button) view.findViewById(R.id.button_search);
         webView.setWebViewClient(new WebViewClient());
-        if(url != null){
-            webView.loadUrl(url);
-        }
+
+
+
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText searchText = (EditText)view.findViewById(R.id.url_search);
-                url = searchText.getText().toString();
-                //added this so app would load url in my webview and not use default app from phone
 
+
+                //added this so app would load url in my webview and not use default app from phone
+                url = urlFromEditText();
                 webView.loadUrl(url);
                 //webView.loadUrl(getStringFromURIText());
             }
         });
+
+        webView.loadUrl(url);
 
         return view;
 
@@ -89,5 +92,10 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
     public void onSaveInstanceState(Bundle outState) {
         outState.putString("url",url);
         super.onSaveInstanceState(outState);
+    }
+
+    public String urlFromEditText(){
+        EditText searchText = (EditText) view.findViewById(R.id.url_search);
+        return searchText.getText().toString();
     }
 }
