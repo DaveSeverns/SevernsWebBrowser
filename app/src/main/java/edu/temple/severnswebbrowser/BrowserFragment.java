@@ -76,8 +76,8 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
 
 
                 //added this so app would load url in my webview and not use default app from phone
-                url = urlFromEditText();
-                webView.loadUrl(url);
+
+                webView.loadUrl(urlFromEditText());
                 //webView.loadUrl(getStringFromURIText());
             }
         });
@@ -96,6 +96,7 @@ public class BrowserFragment extends android.support.v4.app.Fragment {
 
     public String urlFromEditText(){
         EditText searchText = (EditText) view.findViewById(R.id.url_search);
-        return searchText.getText().toString();
+        url = searchText.getText().toString();
+        return url;
     }
 }

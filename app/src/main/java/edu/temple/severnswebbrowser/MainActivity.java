@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     //member variable to keep reference through out activity and inner class
     ViewPager viewPager;
-    int currentIndex, lastIndex;
+    int currentIndex;
 
     //TODO implement home page when the app launches
     final private String HOME_PAGE = "https://google.com";
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        url = intent.getData().toString();
+        String url = intent.getData().toString();
         getNewInstanceBrowserFragment(url);
         super.onNewIntent(intent);
     }
